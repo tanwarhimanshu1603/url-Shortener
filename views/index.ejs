@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.7/dist/tailwind.min.css" rel="stylesheet">
+    <title>URL Shrinker</title>
+</head>
+
+<body class="bg-gradient-to-r from-purple-500 to-pink-500 h-screen flex items-center justify-center">
+    <div class="w- bg-white rounded-lg shadow-lg p-8">
+        <h1 class="text-3xl font-semibold text-center mb-6 text-gray-800 font-bold capital">URL SHRINKER</h1>
+        <form action="/shortUrls" method="post" class="space-y-4 flex flex-row items-center">
+            <div class="relative flex-1 mr-4">
+                <label for="longUrl" class="text-gray-700 font-semibold">Enter the Long URL:</label>
+                <input type="url" required id="fullURL" name="fullURL" placeholder="https://www.example.com/long-url"
+                    class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-purple-500">
+            </div>
+            <button type="submit"
+                class="font-semibold bg-purple-600 text-white px-3 py-3 rounded-md hover:bg-purple-700 focus:outline-none focus:ring focus:border-purple-300">
+                Shrink
+            </button>
+        </form>
+
+        <table class="w-full mt-8">
+            <thead>
+                <tr class="bg-purple-600 text-white">
+                    <th class="px-4 py-3">Long URL</th>
+                    <th class="px-4 py-3">Short URL</th>
+                    <th class="px-4 py-3">Clicks</th>
+                </tr>
+            </thead>
+            <tbody id="urlTableBody">
+                <% shortUrls.forEach(shortUrl =>  { %>
+
+                    <tr class="bg-purple-100 text-gray-700">
+                        <td class="px-4 py-3"><a href="<%=shortUrl.full%>"
+                                class="text-purple-400 hover:text-purple-600"><%=shortUrl.full%></a>
+                        </td>
+                        <td class="px-4 py-3"><a href="<%=shortUrl.short%>"
+                                class="text-purple-600 hover:text-purple-800"><%=shortUrl.short%></a></td>
+                        <td class="px-4 py-3"><%=shortUrl.clicks%></td>
+                    </tr>
+
+                <% }) %>
+            </tbody>
+        </table>
+    </div>
+</body>
+
+</html>
